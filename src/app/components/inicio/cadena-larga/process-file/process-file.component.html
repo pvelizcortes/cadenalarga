@@ -1,0 +1,35 @@
+<div class="card w-100">
+    <div class="card-body">
+        <h5 class="card-title">Procesar Archivo</h5>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <p>Probar directamente con los archivos de ejemplo <b>.txt | .csv</b></p>
+                            <button class="btn btn-primary btn-block" (click)="testFile('Txt.txt');">Test .txt</button>
+                            <button class="btn btn-primary btn-block" (click)="testFile('Csv.csv');">Test .csv</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            <h4>Subir Archivo .txt/.csv</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <input class="form-control mb-2" accept=".txt,.csv" type="file"
+                                (change)="processFile($event)">                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <p *ngIf="fileName" class="pl-2"><b>Nombre Archivo: </b> {{fileName}}</p>
+                    <app-array-list [masterArray]="fileArray"></app-array-list>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>

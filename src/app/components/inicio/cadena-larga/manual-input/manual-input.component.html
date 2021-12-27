@@ -1,0 +1,28 @@
+<div class="card w-100">
+    <div class="card-body">
+        <h5 class="card-title">Ingresar Texto</h5>
+        <div class="container">
+            <form [formGroup]="formMaster">
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <h4></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <textarea class="form-control mb-2" rows="7" formControlName="textInput"></textarea>
+                                <button class="btn-block btn btn-primary" (click)="processText();">Generar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <app-array-list [masterArray]="inputArray"></app-array-list>
+                    </div>
+                </div>
+            </form>
+            <hr>
+        </div>
+    </div>
+</div>

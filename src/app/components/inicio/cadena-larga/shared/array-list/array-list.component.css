@@ -1,0 +1,11 @@
+.char-found{
+    font-weight: bold;
+    color: white; 
+    background-color: red;
+    padding: 0px 5px 0px 5px;
+    border-radius: 50%;
+}
+
+.char-default{  
+    color: black;    
+}

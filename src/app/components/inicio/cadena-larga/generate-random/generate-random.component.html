@@ -1,0 +1,65 @@
+<div class="card w-100">
+    <div class="card-body">
+        <h5 class="card-title">Generar Matriz Aleatoria</h5>
+        <div class="container">
+            <form [formGroup]="formMaster" (ngSubmit)="onSubmit()" #f="ngForm">
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <small>Filas *</small>
+                                <input type="number" placeholder="ej: 10" class="form-control"
+                                    formControlName="textEjeX" min="4" max="20">
+                                <mat-error *ngIf="formMaster.get('textEjeX').hasError('required')"><small
+                                        class="text-danger">* Campo
+                                        Requerido</small>
+                                </mat-error>
+                                <mat-error *ngIf="formMaster.get('textEjeX').hasError('min')"><small
+                                        class="text-danger">El
+                                        numero debe ser mayor o igual a 4.</small>
+                                </mat-error>
+                                <mat-error *ngIf="formMaster.get('textEjeX').hasError('max')"><small
+                                        class="text-danger">El
+                                        numero debe ser menor o igual a 20.</small>
+                                </mat-error>
+                                <mat-error *ngIf="formMaster.get('textEjeX').hasError('pattern')"><small
+                                        class="text-danger">Debe ingresar solo números.</small>
+                                </mat-error>
+                            </div>
+                            <div class="col">
+                                <small>Columnas *</small>
+                                <input type="number" placeholder="ej: 10" class="form-control"
+                                    formControlName="textEjeY" min="4" max="20">
+                                <mat-error *ngIf="formMaster.get('textEjeY').hasError('required')"><small
+                                        class="text-danger">* Campo
+                                        Requerido</small>
+                                </mat-error>
+                                <mat-error *ngIf="formMaster.get('textEjeY').hasError('min')"><small
+                                        class="text-danger">El
+                                        numero debe ser mayor o igual a 4.</small>
+                                </mat-error>
+                                <mat-error *ngIf="formMaster.get('textEjeY').hasError('max')"><small
+                                        class="text-danger">El
+                                        numero debe ser menor o igual a 20.</small>
+                                </mat-error>
+                                <mat-error *ngIf="formMaster.get('textEjeY').hasError('pattern')"><small
+                                        class="text-danger">Debe ingresar solo números.</small>
+                                </mat-error>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <br>
+                                <button class="btn btn-primary btn-block" type="submit"
+                                    [disabled]="!formMaster.valid">Generar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <app-array-list [masterArray]="randomArray"></app-array-list>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
