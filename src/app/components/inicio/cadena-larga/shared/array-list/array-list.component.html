@@ -2,8 +2,11 @@
     <div class="row">
         <div class="col" *ngIf="masterArray.length > 0" style="overflow: auto;">
             <a class="btn btn-success mb-2" (click)="processArray();">Buscar caracteres continuos</a> <a class="btn btn-primary mb-2 ml-5" routerLink="/inicio/info">Ver codigo</a>
-            <p>
+            <p *ngIf="maxCount > 1">
                 Resultado :  <b class="text-danger">{{charToShow}}</b> 
+            </p>
+            <p *ngIf="maxCount <= 1 && maxCharFound == ''">
+                Resultado :  <b>{{messageResult}}</b> 
             </p>
             <table class="table table-sm">
                 <tr *ngFor="let row of masterArray;">

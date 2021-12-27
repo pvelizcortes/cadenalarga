@@ -14,10 +14,11 @@ export class ArrayListComponent implements OnInit {
 
   rowLength: number = 0;
   colLength: number = 0;
-  maxCount: number = 0;
+  maxCount: number = 1;
 
   searchingChar: string = ''; // Caracter que se está buscando
-  maxCharFound: string = '';  
+  maxCharFound: string = ''; 
+  messageResult : string = '';
 
   constructor(public service: CadenaLargaService) {
   }
@@ -27,9 +28,10 @@ export class ArrayListComponent implements OnInit {
 
   processArray() {
     try {
-      this.cleanAll();
+      this.cleanAll();      
       this.rowLength = (this.masterArray.length);
       this.colLength = (this.masterArray[0].length);
+      this.messageResult = 'No se encontraron caracteres continuos.';
 
       for (let row = 0; row < this.rowLength; row++) {
         for (let col = 0; col < this.colLength; col++) {
@@ -38,11 +40,11 @@ export class ArrayListComponent implements OnInit {
             let contador = this.moveTo((row + mov[0]), (col + mov[1]), mov[0], mov[1], 1);
             if (contador > this.maxCount) {
               this.maxCount = contador;
-              this.maxCharFound = this.searchingChar;
+              this.maxCharFound = this.searchingChar;    
             }
           });
         }
-      }      
+      }        
     }
     catch (ex) {
       console.log(`Error: ${ex}`);
@@ -63,8 +65,9 @@ export class ArrayListComponent implements OnInit {
   }
 
   cleanAll() {
-    this.maxCount = 0;
+    this.maxCount = 1;
     this.maxCharFound = '';
+    this.messageResult = '';
   }
 
   get charToShow() {
