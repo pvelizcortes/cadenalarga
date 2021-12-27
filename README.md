@@ -1,27 +1,78 @@
-# CadenaLarga
+# Cadena Larga
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1200px-Angular_full_color_logo.svg.png" width="100" height="100">
+</p>
 
-## Development server
+Cadena larga es un ejercicio que recorre una matriz bidimensional de caracteres 
+buscando de manera recursiva los caracteres continuos que más se repitan.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Frameworks empleados.
+* Angular
+* Bootstrap
 
-## Code scaffolding
+Conceptos aplicados en este ejercicio.
+* Arrays
+* Recursividad
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Demo Online (FireBase)
+Para probar la aplicación online haga click aquí:
+<a href="https://emerioschallenge.web.app"> <b>Demo Cadena Larga</b> </a>
 
-## Build
+# Uso
+Para correr la aplicación:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+*  Instalar las dependencias del proyecto: `$ npm install`
+*  Correr la aplicación: `$ ng serve -o`
+*  Las instrucciones estarán en el mismo sitio Web.
 
-## Running unit tests
+# Algoritmos
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* Algoritmo que recorre el Array.
 
-## Running end-to-end tests
+```js
+/* Array de los 8 movimientos posibles (sentido del reloj) */
+arrayOfMovements = [[-1, 0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1]];
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+processArray() {
+    try {
+      this.cleanAll();
+      this.rowLength = (this.masterArray.length);
+      this.colLength = (this.masterArray[0].length);
 
-## Further help
+      for (let row = 0; row < this.rowLength; row++) {
+        for (let col = 0; col < this.colLength; col++) {
+          this.searchingChar = this.masterArray[row][col];
+          this.arrayOfMovements.forEach(mov => { // recorrer los 8 movimientos posibles.
+            let contador = this.moveTo((row + mov[0]), (col + mov[1]), mov[0], mov[1], 1);
+            if (contador > this.maxCount) {
+              this.maxCount = contador;
+              this.maxCharFound = this.searchingChar;
+            }
+          });
+        }
+      }      
+    }
+    catch (ex) {
+      console.log(`Error: ${ex}`);
+    }
+  }
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* Algoritmo Recursivo.
+
+```js
+  /*
+  * Funcion recursiva
+  */
+  moveTo(row, col, addRow, addCol, contador) {
+    if ((row > (this.rowLength - 1) || row < 0) || (col > (this.colLength - 1) || col < 0)) // verificar que no salga de los limites.
+      return contador;
+    if (this.searchingChar == this.masterArray[row][col]) {
+      contador++;
+      return this.moveTo((row + addRow), (col + addCol), addRow, addCol, contador);
+    }
+    return contador;
+  }
+
+```
